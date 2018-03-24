@@ -1,0 +1,27 @@
+{
+  "name": "cecilia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ViniciusVaz/cecilia.git"
+  },
+  "keywords": [
+    "NodeJs"
+  ],
+  "author": "ViniciusVAz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ViniciusVaz/cecilia/issues"
+  },
+  "homepage": "https://github.com/ViniciusVaz/cecilia#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "consign": "^0.1.6",
+    "express": "^4.16.3"
+  }
+}

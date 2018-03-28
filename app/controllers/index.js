@@ -1,8 +1,10 @@
-module.exports.index = (app, req, res) => {
+module.exports.index = (application, req, res) => {
 
-    let data = req.body
+    const data = req.body
+        , connection = application.config.dbConnection
+        , ProductsDAO = new application.app.models.ProductsDAO(connection)
 
-    console.log(data)
+    ProductsDAO.insertProduct(data)
 
     res.send("oi")
 }

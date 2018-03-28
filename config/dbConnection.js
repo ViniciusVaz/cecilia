@@ -1,20 +1,27 @@
-const mongo = require('mongodb')
+const MongoClient = require('mongodb').MongoClient
 
-let connMongoDB = () => {
+class MongoConnection {
+    init() {
+        // Connection URL
+        const url = 'mongodb://localhost:27017';
 
-    let db = new mongo.Db(
-        '123',
-        new mongo.Server(
-            'localhost',
-            27017,
-            {}
-        ),
-        {}
-    )
+        // Database Name
+        const dbName = '123';
 
-    return db
-}
+        const XablauController = require('../app/controllers/')
 
-module.exports = () => {
-    return connMongoDB
+        // Use connect method to connect to the Server
+        MongoClient.connect(url, function(err, client) {
+            assert.equal(null, err);
+            console.log("Connected correctly to server");
+
+            const db = client.db(dbName);
+
+            const a = new XablauController(db)
+
+            return db
+        })
+    }
+
+    close(){}//close connection
 }

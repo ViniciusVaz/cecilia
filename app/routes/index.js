@@ -1,12 +1,13 @@
-//require controller let a
 const HomeController = require('../controllers/')
 
 module.exports = (application) => {
-    application.post('/a', (req, res) => {
-        // new application.app.controllers.index.index(application, req, res)
-
-        let home = new HomeController(application, req, res) //armazenar let b
-        
+    application.post('/insert', (req, res) => {
+        const home = new HomeController(application, req, res)
         home.insert()
+    })
+
+    application.get('/list', (req, res) => {
+        const home = new HomeController(application, req, res)
+        home.list()
     })
 }

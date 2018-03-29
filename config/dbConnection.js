@@ -1,22 +1,35 @@
-const MongoClient = require('mongodb').MongoClient
+var MongoClient = require('mongodb').MongoClient
 
-class MongoConnection {
-
-    async init() {
-        const url = 'mongodb://localhost:27017'
-            , dbName = '123'
-
-        let db = await MongoClient.connect(url, function(err, client) {
-            const db = client.db(dbName)
-            console.log("Connected correctly to server");
-
-            return db
-        })
-        
-        return db
-    }
-
-    close(){}//close connection
+var state = {
+    db: null
 }
 
-module.exports = MongoConnection
+exports.connect = (url, done) => {
+    if (state.db) {
+        return done()
+    }
+    
+    MongoClient.connect(url, (err, db) => {
+        if (err)  {
+            return done(err)
+        }
+        
+        state.db = db
+        done()
+    })
+}
+
+exports.get = () => {
+    return state.db
+}
+
+exports.close = (done) => {
+    if (state.db) {
+        state.db.close((err, result) => {
+            state.db = null
+            state.mode = null
+
+            return state.db
+        })
+    }
+}
